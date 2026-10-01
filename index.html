@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="A gaming directory for discovering standout games, genres, hidden gems, and community favourites." />
+  <meta property="og:title" content="NOVA Gaming Directory" />
+  <meta property="og:description"
+    content="A gaming directory for discovering standout games, genres, hidden gems, and community favourites." />
+  <title>NOVA Gaming Directory — Curated Play Picks</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="icon" type="image/png" href="./images/NOVA%20Logo%20Light%20Mode.png" />
+  <link rel="stylesheet" href="./css/style.css" />
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem('nova-theme');
+      const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (savedTheme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      } else if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+</head>
+
+<body>
+  <canvas id="ambientCanvas" class="ambient-canvas" aria-hidden="true"></canvas>
+  <div id="top"></div>
+
+  <!-- SITE HEADER -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <a href="#top" class="brand" aria-label="NOVA home">
+        <img src="./images/NOVA%20Logo%20Light%20Mode.png" alt="NOVA logo" class="brand-logo" />
+      </a>
+
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#recommended">Recommended</a>
+        <a href="#values">Genres</a>
+        <a href="#explore">Find a Game</a>
+        <a href="#favourites" class="nav-fav-link">
+          Favourites
+          <span class="nav-fav-badge" id="navFavBadge">0</span>
+        </a>
+        <a href="#about">About</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="theme-toggle-btn" id="themeToggle" type="button" aria-label="Toggle dark mode"
+          title="Toggle theme">
+          <svg class="theme-icon sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="theme-icon moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+        <a href="#contact" class="header-cta-btn">Join the Feed</a>
+        <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="mobile-menu" aria-label="Mobile navigation">
+      <a href="#recommended">Recommended</a>
+      <a href="#values">Genres</a>
+      <a href="#explore">Find a Game</a>
+      <a href="#favourites">Favourites (<span id="mobileFavBadge">0</span>)</a>
+      <a href="#about">About</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+      <button class="mobile-theme-btn" id="mobileThemeToggle" type="button">
+        <span class="mobile-theme-text" id="mobileThemeText">Appearance: Dark Mode</span>
+        <span class="mobile-theme-indicator" id="mobileThemeIndicator">🌙</span>
+      </button>
+      <a href="#contact" class="mobile-cta-btn">Build My List</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION (Minimalist, Spacious Editorial Canvas) -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-card-frame" id="heroFrame">
+          <!-- Background Layer -->
+          <div class="hero-bg-media">
+            <img src="https://cdn.akamai.steamstatic.com/steam/apps/1086940/header.jpg"
+              alt="Official Baldur's Gate 3 store artwork" class="hero-bg-img" id="heroMainImage" />
+            <div class="hero-overlay"></div>
+          </div>
+
+
+          <!-- Hero Main Editorial Copy -->
+          <div class="hero-body-content">
+            <p class="hero-eyebrow">Gaming Portal</p>
+            <h1 class="hero-headline">
+              Baldur's Gate 3
+            </h1>
+            <p class="hero-lead-text">
+              Shape a party, make consequential choices, and explore an expansive fantasy role-playing adventure.
+            </p>
+            <div class="hero-cta-wrap">
+              <a href="#searchBarAnchor" class="hero-pill-btn">
+                <span>Start Your Queue</span>
+                <span class="btn-arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Hero Bottom Bar: Clean Slide Dots & Minimal Scroll Cue -->
+          <div class="hero-footer-bar">
+            <div class="hero-carousel-nav" aria-label="Slide navigation">
+              <div class="hero-indicators" id="heroIndicators">
+                <span class="hero-indicator-dot active" data-slide="0" aria-label="Slide 1"></span>
+                <span class="hero-indicator-dot" data-slide="1" aria-label="Slide 2"></span>
+                <span class="hero-indicator-dot" data-slide="2" aria-label="Slide 3"></span>
+              </div>
+            </div>
+
+            <a href="#searchBarAnchor" class="scroll-now-indicator" aria-label="Scroll down to explore games">
+              <span class="scroll-line"></span>
+              <span>Scroll to Explore</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MINIMALIST FLOATING SEARCH BAR -->
+    <section class="search-strip-section" id="searchBarAnchor">
+      <div class="container">
+        <div class="floating-search-bar" role="search">
+          <div class="search-cell search-cell-input">
+            <div class="cell-content">
+              <label for="searchInput">
+                <svg class="search-glyph" viewBox="0 0 20 20" aria-hidden="true">
+                  <circle cx="8.5" cy="8.5" r="5.5"></circle>
+                  <path d="m12.5 12.5 4 4"></path>
+                </svg>
+                Game or Keyword
+              </label>
+              <input id="searchInput" type="search" placeholder="Search by title, genre or tag..."
+                aria-label="Search games" />
+            </div>
+          </div>
+
+          <div class="search-divider" aria-hidden="true"></div>
+
+          <div class="search-cell search-cell-select">
+            <div class="cell-content">
+              <label for="locationFilter">Platform</label>
+              <select id="locationFilter" aria-label="Filter by platform">
+                <option value="All Locations">All Platforms</option>
+                <option value="PC">PC</option>
+                <option value="PlayStation">PlayStation</option>
+                <option value="Xbox">Xbox</option>
+                <option value="Switch">Switch</option>
+                <option value="Mobile">Mobile</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="search-divider" aria-hidden="true"></div>
+
+          <div class="search-cell search-cell-select">
+            <div class="cell-content">
+              <label for="categoryFilter">Genre</label>
+              <select id="categoryFilter" aria-label="Filter by genre">
+                <option value="All">All Genres</option>
+                <option value="RPG">RPG</option>
+                <option value="Action">Action</option>
+                <option value="FPS">FPS</option>
+                <option value="Adventure">Adventure</option>
+                <option value="Puzzle">Puzzle</option>
+                <option value="Simulation">Simulation</option>
+                <option value="Co-op">Co-op</option>
+                <option value="Strategy">Strategy</option>
+                <option value="Racing">Racing</option>
+              </select>
+            </div>
+          </div>
+
+          <button id="searchButton" class="search-action-btn" type="button">
+            Find Game
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- RECOMMENDED DESTINATIONS (Minimalist Editorial Slider) -->
+    <section id="recommended" class="recommended-section">
+      <div class="container">
+        <div class="section-headline-row">
+          <div>
+            <p class="section-eyebrow">Curated Highlights</p>
+            <h2 class="serif-title">Recommended Games</h2>
+          </div>
+          <div class="carousel-control-btns">
+            <button class="carousel-btn prev-btn" id="recScrollPrev" aria-label="Scroll recommended left" type="button">
+              ←
+            </button>
+            <button class="carousel-btn next-btn" id="recScrollNext" aria-label="Scroll recommended right"
+              type="button">
+              →
+            </button>
+          </div>
+        </div>
+
+        <div class="recommended-track" id="recommendedTrack">
+          <article class="rec-card">
+            <div class="rec-img-wrap">
+              <img src="https://cdn.akamai.steamstatic.com/steam/apps/1086940/header.jpg"
+                alt="Official Baldur's Gate 3 store artwork" loading="lazy" />
+              <span class="rec-country-badge">RPG</span>
+            </div>
+            <div class="rec-card-body">
+              <h3>Baldur's Gate 3</h3>
+              <p>Shape a party, make consequential choices, and explore an expansive fantasy role-playing adventure.</p>
+              <div class="rec-card-footer">
+                <button class="rec-action-link details-btn" type="button" data-id="1086940">
+                  View Details <span class="arrow" aria-hidden="true">→</span>
+                </button>
+                <span class="rec-price-pill">Steam Store</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="rec-card">
+            <div class="rec-img-wrap">
+              <img src="https://cdn.akamai.steamstatic.com/steam/apps/1145360/header.jpg"
+                alt="Official Hades store artwork" loading="lazy" />
+              <span class="rec-country-badge">Action</span>
+            </div>
+            <div class="rec-card-body">
+              <h3>Hades</h3>
+              <p>Fight through the Underworld in a fast action roguelike with evolving characters and
+                Greek-myth-inspired storytelling.</p>
+              <div class="rec-card-footer">
+                <button class="rec-action-link details-btn" type="button" data-id="1145360">
+                  View Details <span class="arrow" aria-hidden="true">→</span>
+                </button>
+                <span class="rec-price-pill">Steam Store</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="rec-card">
+            <div class="rec-img-wrap">
+              <img src="https://cdn.akamai.steamstatic.com/steam/apps/1245620/header.jpg"
+                alt="Official Elden Ring store artwork" loading="lazy" />
+              <span class="rec-country-badge">RPG</span>
+            </div>
+            <div class="rec-card-body">
+              <h3>Elden Ring</h3>
+              <p>Explore the Lands Between in a challenging open-world action RPG filled with dungeons, secrets, and
+                formidable foes.</p>
+              <div class="rec-card-footer">
+                <button class="rec-action-link details-btn" type="button" data-id="1245620">
+                  View Details <span class="arrow" aria-hidden="true">→</span>
+                </button>
+                <span class="rec-price-pill">Steam Store</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="rec-card">
+            <div class="rec-img-wrap">
+              <img src="https://cdn.akamai.steamstatic.com/steam/apps/1091500/header.jpg"
+                alt="Official Cyberpunk 2077 store artwork" loading="lazy" />
+              <span class="rec-country-badge">RPG</span>
+            </div>
+            <div class="rec-card-body">
+              <h3>Cyberpunk 2077</h3>
+              <p>Play as V, a mercenary in Night City, in an open-world science-fiction RPG driven by characters and
+                player choices.</p>
+              <div class="rec-card-footer">
+                <button class="rec-action-link details-btn" type="button" data-id="1091500">
+                  View Details <span class="arrow" aria-hidden="true">→</span>
+                </button>
+                <span class="rec-price-pill">Steam Store</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="rec-card">
+            <div class="rec-img-wrap">
+              <img src="https://cdn.akamai.steamstatic.com/steam/apps/413150/header.jpg"
+                alt="Official Stardew Valley store artwork" loading="lazy" />
+              <span class="rec-country-badge">Simulation</span>
+            </div>
+            <div class="rec-card-body">
+              <h3>Stardew Valley</h3>
+              <p>Restore a farm, build relationships, explore caves, and make a life in a relaxed countryside
+                simulation.</p>
+              <div class="rec-card-footer">
+                <button class="rec-action-link details-btn" type="button" data-id="413150">
+                  View Details <span class="arrow" aria-hidden="true">→</span>
+                </button>
+                <span class="rec-price-pill">Steam Store</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="rec-card">
+            <div class="rec-img-wrap">
+              <img src="https://cdn.akamai.steamstatic.com/steam/apps/367520/header.jpg"
+                alt="Official Hollow Knight store artwork" loading="lazy" />
+              <span class="rec-country-badge">Adventure</span>
+            </div>
+            <div class="rec-card-body">
+              <h3>Hollow Knight</h3>
+              <p>Descend into Hallownest, a hand-drawn underground kingdom built around precise combat and
+                interconnected exploration.</p>
+              <div class="rec-card-footer">
+                <button class="rec-action-link details-btn" type="button" data-id="367520">
+                  View Details <span class="arrow" aria-hidden="true">→</span>
+                </button>
+                <span class="rec-price-pill">Steam Store</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- OUR ETHOS (Clean, Numbered, Minimalist Layout) -->
+    <section id="values" class="values-section">
+      <div class="container">
+        <!-- Subtle Social Proof Bar -->
+        <div class="social-proof-strip">
+          <span class="proof-dot"></span>
+          <span>30 Featured Games</span>
+          <span class="proof-separator">•</span>
+          <span>Official Store Artwork</span>
+          <span class="proof-separator">•</span>
+          <span>Curated by Gaming Explorers</span>
+        </div>
+
+        <!-- Editorial Grid -->
+        <div class="editorial-feature-grid">
+          <div class="feature-copy-col">
+            <span class="value-tag-pill">01 / Our Value</span>
+            <h2 class="serif-title feature-main-title">Not Your Boring Game Guide</h2>
+            <p class="feature-desc">
+              We track the games with real buzz, standout worlds, and the kind of experiences that keep players talking
+              long after the credits roll.
+            </p>
+
+            <div class="value-features-list">
+              <div class="value-feature-item">
+                <span class="feature-number">01</span>
+                <div>
+                  <h4>Indie Gems &amp; Hidden Hits</h4>
+                  <p>Fresh discoveries, cult favourites, and world-building that feels unforgettable.</p>
+                </div>
+              </div>
+
+              <div class="value-feature-item">
+                <span class="feature-number">02</span>
+                <div>
+                  <h4>Co-op &amp; Competitive Routines</h4>
+                  <p>Games built for late-night sessions, team chemistry, and epic grind moments.</p>
+                </div>
+              </div>
+
+              <div class="value-feature-item">
+                <span class="feature-number">03</span>
+                <div>
+                  <h4>Genre Defining Picks</h4>
+                  <p>From RPG loops to survival tension, we surface what deserves a place in your queue.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="feature-cta-row">
+              <a href="#explore" class="pill-btn-dark">
+                Explore Titles <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Asymmetric Editorial Gallery -->
+          <div class="feature-visual-col" aria-hidden="true">
+            <div class="asymm-gallery">
+              <div class="asymm-card asymm-card-tall">
+                <img src="https://cdn.akamai.steamstatic.com/steam/apps/275850/header.jpg"
+                  alt="Official No Man's Sky store artwork" />
+                <div class="asymm-caption">
+                  <span class="asymm-tag">Simulation</span>
+                  <p>Worlds worth exploring</p>
+                </div>
+              </div>
+
+              <div class="asymm-stack">
+                <div class="asymm-card asymm-card-mid">
+                  <img src="https://cdn.akamai.steamstatic.com/steam/apps/1245620/header.jpg"
+                    alt="Official Elden Ring store artwork" />
+                  <div class="asymm-caption">
+                    <span class="asymm-tag">Role-playing</span>
+                    <p>Characters with a story</p>
+                  </div>
+                </div>
+
+                <div class="asymm-card asymm-card-small">
+                  <img src="https://cdn.akamai.steamstatic.com/steam/apps/504230/header.jpg"
+                    alt="Official Celeste store artwork" />
+                  <div class="asymm-caption">
+                    <span class="asymm-tag">Indie</span>
+                    <p>Small games, big ideas</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PICK THE PLACE — DIRECTORY SECTION (Minimal Category Tabs) -->
+    <section id="explore" class="directory-section">
+      <div class="container">
+        <div class="directory-header-row">
+          <div>
+            <span class="value-tag-pill">Directory</span>
+            <h2 class="serif-title">Find Your Next Game</h2>
+          </div>
+          <p class="directory-subtext">
+            Thoughtfully categorized picks for players chasing co-op chaos, deep RPGs, and quiet indie gems.
+          </p>
+        </div>
+
+        <!-- CLEAN CATEGORY PILL TABS (No Emojis) -->
+        <div class="category-tabs-strip" id="categoryTabs" role="tablist" aria-label="Category Filters">
+          <button class="cat-pill-tab active" data-cat="All" role="tab" aria-selected="true">All</button>
+          <button class="cat-pill-tab" data-cat="RPG" role="tab" aria-selected="false">RPG</button>
+          <button class="cat-pill-tab" data-cat="Action" role="tab" aria-selected="false">Action</button>
+          <button class="cat-pill-tab" data-cat="FPS" role="tab" aria-selected="false">FPS</button>
+          <button class="cat-pill-tab" data-cat="Adventure" role="tab" aria-selected="false">Adventure</button>
+          <button class="cat-pill-tab" data-cat="Puzzle" role="tab" aria-selected="false">Puzzle</button>
+          <button class="cat-pill-tab" data-cat="Simulation" role="tab" aria-selected="false">Simulation</button>
+          <button class="cat-pill-tab" data-cat="Co-op" role="tab" aria-selected="false">Co-op</button>
+          <button class="cat-pill-tab" data-cat="Strategy" role="tab" aria-selected="false">Strategy</button>
+          <button class="cat-pill-tab" data-cat="Racing" role="tab" aria-selected="false">Racing</button>
+        </div>
+
+        <!-- DETAILED FILTER PANEL -->
+        <aside id="filters" class="filter-panel" aria-label="Filter experiences">
+          <div class="filter-field">
+            <label for="sortFilter">Sort by</label>
+            <select id="sortFilter">
+              <option value="Recommended">Recommended</option>
+              <option value="Name A-Z">Name A-Z</option>
+              <option value="Name Z-A">Name Z-A</option>
+              <option value="Category A-Z">Category A-Z</option>
+            </select>
+          </div>
+
+          <div class="filter-field">
+            <label for="featuredFilter">Featured</label>
+            <select id="featuredFilter">
+              <option value="All">All Games</option>
+              <option value="Featured">Featured Only</option>
+            </select>
+          </div>
+
+          <div class="filter-action-wrap">
+            <button id="clearFiltersButton" class="ghost-btn" type="button">
+              Clear Filters
+            </button>
+          </div>
+        </aside>
+
+        <!-- RESULTS COUNT & STATUS ROW -->
+        <div class="results-row">
+          <h3 id="resultsCount" class="results-count">Loading games...</h3>
+          <button id="resetSearchButton" class="text-btn" type="button">Reset search</button>
+        </div>
+
+        <!-- RESULTS CONTAINER (Dynamic Cards Grid) -->
+        <div id="resultsContainer" class="results-grid" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- SAVED FAVOURITES SECTION -->
+    <section id="favourites" class="favourites-section">
+      <div class="container">
+        <div class="section-headline-row">
+          <div>
+            <p class="section-eyebrow">Personal Collection</p>
+            <h2 class="serif-title">Your Saved Games</h2>
+          </div>
+          <p class="favourites-summary-note">
+            Games, worlds, and sessions you want to keep on your radar. Saved locally in your browser.
+          </p>
+        </div>
+        <div id="favouritesContainer" class="favourites-grid" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="about-section">
+      <div class="container about-grid">
+        <div>
+          <p class="eyebrow eyebrow-dark">About NOVA</p>
+          <h2>Built for curious players.</h2>
+        </div>
+        <div>
+          <p>
+            NOVA brings together the games, communities, genres, and standout moments that keep a
+            player queue fresh. We focus on discovery, vibe, and recommendations worth saving for
+            your next session.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq" class="faq-section">
+      <div class="container faq-container">
+        <div class="faq-heading">
+          <p class="eyebrow eyebrow-dark">Good to Know</p>
+          <h2>Frequently asked questions.</h2>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>How do I find games that fit what I like?</summary>
+            <p>Search by title, genre, or tag, then narrow the results by genre, platform, and featured status.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Can I save games for later?</summary>
+            <p>Yes. Use the favourite control on a game to save it in this browser. Favourites are stored locally and are not synced between devices.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Do I need an account to use NOVA?</summary>
+            <p>No account is needed. Your favourites and preferences stay in your browser's local storage.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Why might some game artwork not appear?</summary>
+            <p>Game artwork is loaded from external store image servers, so it requires an internet connection and availability from those providers.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="contact-section">
+      <div class="container contact-grid">
+        <div class="contact-copy">
+          <p class="eyebrow eyebrow-dark">Contact</p>
+          <h2>Tell us what you want to play next.</h2>
+          <p>
+            Share a recommendation, suggest a genre to cover, or send us a note about the next
+            game you think deserves more hype.
+          </p>
+        </div>
+
+        <div class="contact-card">
+          <!-- Ambient background video -->
+          <div class="contact-card-bg-media" aria-hidden="true">
+            <video id="contactBgVideo" class="contact-bg-video" autoplay muted loop playsinline webkit-playsinline
+              preload="auto">
+              <source src="./video/Form%20background.mp4" type="video/mp4" />
+              <source src="./video/Form background.mp4" type="video/mp4" />
+            </video>
+            <div class="contact-video-overlay"></div>
+          </div>
+
+          <form id="contactForm" class="contact-form-inner" novalidate>
+            <div class="form-row">
+              <label for="fullName">Full Name</label>
+              <input id="fullName" name="fullName" type="text" />
+              <p class="field-error" data-error-for="fullName" aria-live="polite"></p>
+            </div>
+
+            <div class="form-row">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" />
+              <p class="field-error" data-error-for="email" aria-live="polite"></p>
+            </div>
+
+            <div class="form-row">
+              <label for="subject">Subject</label>
+              <input id="subject" name="subject" type="text" />
+              <p class="field-error" data-error-for="subject" aria-live="polite"></p>
+            </div>
+
+            <div class="form-row">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5"></textarea>
+              <p class="field-error" data-error-for="message" aria-live="polite"></p>
+            </div>
+
+            <button type="submit" class="primary-btn submit-btn">Send message</button>
+          </form>
+
+          <div id="formSuccessState" class="form-success hidden" aria-live="polite">
+            <div class="success-icon">✓</div>
+            <h3>Message received</h3>
+            <p>Thanks for reaching out. Your message has been successfully validated.</p>
+            <button id="resetFormButton" class="ghost-btn" type="button">Send another message</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- LUXURY EDITORIAL FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand-col">
+        <a href="#top" class="brand brand-footer" aria-label="NOVA home">
+          <img src="./images/NOVA%20Logo%20Light%20Mode.png" alt="NOVA logo" class="brand-logo brand-logo-footer" />
+        </a>
+        <p class="footer-tagline">
+          Curating the games, worlds, and sessions worth queuing up for.
+        </p>
+        <div class="footer-location-tag">
+          <span class="location-pulse" aria-hidden="true"></span>
+          <span>Worldwide</span>
+        </div>
+      </div>
+
+      <div class="footer-links-grid">
+        <div class="footer-nav-group">
+          <h4>Discover</h4>
+          <a href="#recommended">Recommended</a>
+          <a href="#values">Genres</a>
+          <a href="#explore">Find a Game</a>
+          <a href="#favourites">Saved Picks</a>
+        </div>
+
+        <div class="footer-nav-group">
+          <h4>About NOVA</h4>
+          <a href="#about">Story &amp; Ethos</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Suggest a Game</a>
+          <h4>Navigation</h4>
+          <a href="#searchBarAnchor">Quick Search</a>
+          <a href="#filters">Categories</a>
+          <a href="#top" class="back-to-top-link">Back to Top ↑</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>© 2026 NOVA Gaming Directory. All rights reserved.</p>
+      <p class="footer-bottom-credit">Crafted for curious players • Worldwide</p>
+    </div>
+  </footer>
+
+  <!-- EXPERIENCE DETAIL MODAL -->
+  <div id="experienceModal" class="modal hidden" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal="true"></div>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header-controls">
+        <button class="modal-icon-btn modal-fav-btn favourite-btn" id="modalHeaderFavBtn" type="button"
+          aria-label="Save to favourites" title="Save to favourites">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M12 21s-8.5-5.2-10.5-9.6C.7 9.2 2.2 5 6.2 5c2 0 3.2 1.1 4.1 2.4C11.2 6.1 12.4 5 14.4 5c4 0 5.5 4.2 4.7 6.4C20.5 15.8 12 21 12 21Z" />
+          </svg>
+        </button>
+        <button class="modal-icon-btn modal-close" type="button" aria-label="Close details" data-close-modal="true"
+          title="Close">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script src="./js/app.js"></script>
+</body>
+
+</html>

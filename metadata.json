@@ -1,0 +1,8 @@
+{
+  "name": "NOVA Gaming Directory",
+  "description": "A gaming directory for discovering standout games, genres, hidden gems, and community favourites.",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
