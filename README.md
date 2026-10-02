@@ -2,6 +2,9 @@
 
 NOVA is a responsive gaming directory for discovering curated games by title, genre, platform, and tags. It includes featured recommendations, game details, saved favourites, and light and dark themes.
 
+## Preview
+https://princely24m.github.io/Nova-Gaming/
+
 ## Features
 
 - Search the catalog by game title, genre, or tag.
