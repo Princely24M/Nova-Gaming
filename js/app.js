@@ -9,7 +9,6 @@
 const STORAGE_KEYS = {
   favourites: 'nova-game-favourites',
   preferences: 'nova-preferences',
-  theme: 'nova-theme',
 };
 
 // Hero carousel slides
@@ -77,10 +76,6 @@ const elements = {
   resetFormButton: document.getElementById('resetFormButton'),
   navToggle: document.querySelector('.nav-toggle'),
   mobileMenu: document.querySelector('.mobile-menu'),
-  themeToggle: document.getElementById('themeToggle'),
-  mobileThemeToggle: document.getElementById('mobileThemeToggle'),
-  mobileThemeText: document.getElementById('mobileThemeText'),
-  mobileThemeIndicator: document.getElementById('mobileThemeIndicator'),
   heroFrame: document.getElementById('heroFrame'),
   heroBgImage: document.getElementById('heroMainImage'),
   heroHeadline: document.querySelector('.hero-headline'),
@@ -96,7 +91,6 @@ const elements = {
 document.addEventListener('DOMContentLoaded', initApp);
 
 function initApp() {
-  initTheme();
   bindEvents();
   loadFavourites();
   loadPreferences();
@@ -107,68 +101,7 @@ function initApp() {
 }
 
 /* --------------------------------------------------------------------------
-   1. Theme Management (Light / Dark)
-   -------------------------------------------------------------------------- */
-function initTheme() {
-  let savedTheme = null;
-  try {
-    savedTheme = localStorage.getItem(STORAGE_KEYS.theme);
-  } catch (err) {
-    console.warn('Unable to access localStorage for theme:', err);
-  }
-
-  const systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const initialTheme = savedTheme || (systemDark ? 'dark' : 'dark'); // Default to dark gaming theme
-  applyTheme(initialTheme, false);
-
-  if (window.matchMedia) {
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-      if (!localStorage.getItem(STORAGE_KEYS.theme)) {
-        applyTheme(e.matches ? 'dark' : 'light', false);
-      }
-    });
-  }
-}
-
-function toggleTheme() {
-  const current = document.documentElement.getAttribute('data-theme') || 'dark';
-  const next = current === 'dark' ? 'light' : 'dark';
-  applyTheme(next, true);
-}
-
-function applyTheme(theme, save = true) {
-  const isDark = theme === 'dark';
-  document.documentElement.setAttribute('data-theme', theme);
-
-  if (elements.themeToggle) {
-    elements.themeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
-    elements.themeToggle.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
-  }
-
-  if (elements.mobileThemeText) {
-    elements.mobileThemeText.textContent = isDark ? 'Appearance: Dark Mode' : 'Appearance: Light Mode';
-  }
-  if (elements.mobileThemeIndicator) {
-    elements.mobileThemeIndicator.textContent = isDark ? '🌙' : '☀️';
-  }
-
-  // Ensure transparent logo without white background
-  const logos = document.querySelectorAll('.brand-logo');
-  logos.forEach((logo) => {
-    logo.src = './images/NOVA Logo Light Mode.png';
-  });
-
-  if (save) {
-    try {
-      localStorage.setItem(STORAGE_KEYS.theme, theme);
-    } catch (err) {
-      console.warn('Unable to save theme preference:', err);
-    }
-  }
-}
-
-/* --------------------------------------------------------------------------
-   2. Event Listeners & Binding
+   1. Event Listeners & Binding
    -------------------------------------------------------------------------- */
 function bindEvents() {
   // Search input
@@ -245,10 +178,6 @@ function bindEvents() {
     });
   });
 
-  // Theme toggles
-  elements.themeToggle?.addEventListener('click', toggleTheme);
-  elements.mobileThemeToggle?.addEventListener('click', toggleTheme);
-
   // Recommended carousel scroll buttons
   elements.recScrollPrev?.addEventListener('click', () => {
     elements.recTrack?.scrollBy({ left: -340, behavior: 'smooth' });
@@ -269,29 +198,6 @@ function bindEvents() {
 
   elements.heroFrame?.addEventListener('mouseenter', stopHeroAutoSlide);
   elements.heroFrame?.addEventListener('mouseleave', startHeroAutoSlide);
-
-  // Mobile Touch Swipe for Hero Carousel
-  let touchStartX = 0;
-  elements.heroFrame?.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
-  }, { passive: true });
-
-  elements.heroFrame?.addEventListener('touchend', (e) => {
-    const touchEndX = e.changedTouches[0].screenX;
-    const diff = touchStartX - touchEndX;
-    if (Math.abs(diff) > 40) {
-      if (diff > 0) {
-        // Swipe left -> next slide
-        const next = (state.heroIndex + 1) % heroSlides.length;
-        changeHeroSlide(next);
-      } else {
-        // Swipe right -> prev slide
-        const prev = (state.heroIndex - 1 + heroSlides.length) % heroSlides.length;
-        changeHeroSlide(prev);
-      }
-      startHeroAutoSlide();
-    }
-  }, { passive: true });
 
   // Card click delegation for Details button and Favourite button
   document.addEventListener('click', (e) => {
