@@ -1870,6 +1870,11 @@ h1, h2, h3, h4 {
 }
 
 @media (max-width: 580px) {
+  .results-grid,
+  .favourites-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .hero-card-frame {
     padding: 2rem 1.25rem 1.25rem;
     min-height: 400px;
