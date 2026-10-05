@@ -1,9 +1,3 @@
-/**
- * NOVA Gaming Directory — Application Logic
- * Clean, readable, and maintainable vanilla JavaScript.
- * Handles game catalog loading, search, filtering, favourites,
- * carousel slides, modal dialogs, and form validation.
- */
 
 // Storage keys for local persistence
 const STORAGE_KEYS = {
@@ -100,9 +94,7 @@ function initApp() {
   initActiveNav();
 }
 
-/* --------------------------------------------------------------------------
-   1. Event Listeners & Binding
-   -------------------------------------------------------------------------- */
+/* Event Listeners & Binding */
 function bindEvents() {
   // Search input
   elements.searchInput?.addEventListener('input', (e) => {
@@ -246,9 +238,7 @@ function bindEvents() {
   window.addEventListener('scroll', updateHeaderOnScroll, { passive: true });
 }
 
-/* --------------------------------------------------------------------------
-   3. Catalog Data Loading & Rendering
-   -------------------------------------------------------------------------- */
+/* Catalog Data Loading & Rendering */
 async function loadExperiences() {
   showLoadingState();
 
@@ -421,9 +411,7 @@ function renderRecommendedGames() {
     .join('');
 }
 
-/* --------------------------------------------------------------------------
-   4. Favourites Management
-   -------------------------------------------------------------------------- */
+/* Favourites Management */
 function loadFavourites() {
   try {
     const raw = localStorage.getItem(STORAGE_KEYS.favourites);
@@ -532,9 +520,7 @@ function renderFavourites() {
     .join('');
 }
 
-/* --------------------------------------------------------------------------
-   5. Detail Modal Dialog
-   -------------------------------------------------------------------------- */
+/* Detail Modal Dialog- */
 function openExperienceModal(id) {
   const game = state.experiences.find((g) => g.id === id);
   if (!game || !elements.modal || !elements.modalContent) return;
@@ -592,9 +578,7 @@ function closeExperienceModal() {
   document.body.style.overflow = '';
 }
 
-/* --------------------------------------------------------------------------
-   6. Hero Carousel Slide Logic
-   -------------------------------------------------------------------------- */
+/* Hero Carousel Slide Logic */
 function changeHeroSlide(index) {
   state.heroIndex = index;
   const slide = heroSlides[index];
@@ -634,9 +618,7 @@ function stopHeroAutoSlide() {
   }
 }
 
-/* --------------------------------------------------------------------------
-   7. Filter Synchronization & Preferences
-   -------------------------------------------------------------------------- */
+/* Filter Synchronization & Preferences */
 function syncCategoryTabs(selectedCat) {
   elements.categoryTabs?.querySelectorAll('.cat-pill-tab').forEach((tab) => {
     const isMatch = tab.dataset.cat === selectedCat;
@@ -713,9 +695,7 @@ function loadPreferences() {
   }
 }
 
-/* --------------------------------------------------------------------------
-   8. States: Empty, Loading, Error
-   -------------------------------------------------------------------------- */
+/* States: Empty, Loading, Error */
 function showLoadingState() {
   if (!elements.resultsContainer) return;
   const skeletons = Array.from({ length: 6 }, () => '<div class="skeleton-card"></div>').join('');
@@ -752,9 +732,7 @@ function showErrorState() {
   document.getElementById('retryLoadBtn')?.addEventListener('click', loadExperiences);
 }
 
-/* --------------------------------------------------------------------------
-   9. Contact Form Validation
-   -------------------------------------------------------------------------- */
+/* Contact Form Validation */
 function validateContactForm() {
   clearContactFormErrors();
 
@@ -820,9 +798,7 @@ function initContactVideo() {
   video.play().catch(() => {});
 }
 
-/* --------------------------------------------------------------------------
-   10. Header & Navigation Updates on Scroll
-   -------------------------------------------------------------------------- */
+/*  Header & Navigation Updates on Scroll */
 function updateHeaderOnScroll() {
   if (!elements.header) return;
   elements.header.classList.toggle('scrolled', window.scrollY > 20);
