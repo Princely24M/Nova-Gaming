@@ -1,11 +1,6 @@
-/* ==========================================================================
-   NOVA Gaming Directory — Stylesheet
-   Handcrafted, clean, and maintainable CSS.
-   ========================================================================== */
 
-/* --------------------------------------------------------------------------
-   1. Theme Variables & Color Palette
-   -------------------------------------------------------------------------- */
+
+/* Theme Variables & Color Palette */
 :root {
   /* Dark Theme (Default) */
   --bg-primary: #080b12;
@@ -41,9 +36,8 @@
   color-scheme: dark;
 }
 
-/* --------------------------------------------------------------------------
-   2. Reset & Base Typography
-   -------------------------------------------------------------------------- */
+/* Reset & Base Typography*/
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -114,9 +108,7 @@ h1, h2, h3, h4 {
   padding-right: 1.5rem;
 }
 
-/* --------------------------------------------------------------------------
-   3. Site Header & Navigation
-   -------------------------------------------------------------------------- */
+/* Site Header & Navigation */
 .site-header {
   position: sticky;
   top: 0;
@@ -280,9 +272,7 @@ h1, h2, h3, h4 {
   margin-top: 0.25rem;
 }
 
-/* --------------------------------------------------------------------------
-   4. Hero Section & Carousel
-   -------------------------------------------------------------------------- */
+/* Hero Section & Carousel */
 .hero-section {
   padding: 2rem 0 1.5rem;
 }
@@ -431,9 +421,7 @@ h1, h2, h3, h4 {
   background-color: currentColor;
 }
 
-/* --------------------------------------------------------------------------
-   5. Search Bar & Filter Strip
-   -------------------------------------------------------------------------- */
+/* Search Bar & Filter Strip */
 .search-strip-section {
   padding: 1.5rem 0 2rem;
 }
@@ -523,9 +511,7 @@ h1, h2, h3, h4 {
   transform: translateY(-1px);
 }
 
-/* --------------------------------------------------------------------------
-   6. Recommended Games Slider
-   -------------------------------------------------------------------------- */
+/* Recommended Games Slider */
 .recommended-section {
   padding: 3.5rem 0;
 }
@@ -678,9 +664,7 @@ h1, h2, h3, h4 {
   color: var(--text-muted);
 }
 
-/* --------------------------------------------------------------------------
-   7. Ethos & Values Section
-   -------------------------------------------------------------------------- */
+/* Ethos & Values Section */
 .values-section {
   padding: 4.5rem 0;
   background-color: var(--bg-secondary);
@@ -855,9 +839,7 @@ h1, h2, h3, h4 {
   margin: 0.15rem 0 0;
 }
 
-/* --------------------------------------------------------------------------
-   8. Main Directory Section (#explore)
-   -------------------------------------------------------------------------- */
+/* Main Directory Section (#explore) */
 .directory-section {
   padding: 4.5rem 0;
 }
@@ -1169,9 +1151,7 @@ h1, h2, h3, h4 {
   color: var(--accent-cyan);
 }
 
-/* --------------------------------------------------------------------------
-   9. Saved Favourites Section
-   -------------------------------------------------------------------------- */
+/* Saved Favourites Section */
 .favourites-section {
   padding: 4.5rem 0;
   background-color: var(--bg-secondary);
@@ -1185,9 +1165,7 @@ h1, h2, h3, h4 {
   margin: 0.5rem 0 0;
 }
 
-/* --------------------------------------------------------------------------
-   10. Empty, Error, and Loading States
-   -------------------------------------------------------------------------- */
+/*  Empty, Error, and Loading States */
 .empty-state,
 .error-state,
 .loading-state {
@@ -1253,9 +1231,7 @@ h1, h2, h3, h4 {
   50% { opacity: 0.8; }
 }
 
-/* --------------------------------------------------------------------------
-   11. About & FAQ Sections
-   -------------------------------------------------------------------------- */
+/* About & FAQ Sections */
 .about-section {
   padding: 4.5rem 0;
 }
@@ -1358,9 +1334,7 @@ h1, h2, h3, h4 {
   line-height: 1.6;
 }
 
-/* --------------------------------------------------------------------------
-   12. Contact Section & Form Validation
-   -------------------------------------------------------------------------- */
+/* Contact Section & Form Validation */
 .contact-section {
   padding: 4.5rem 0;
 }
@@ -1500,9 +1474,7 @@ h1, h2, h3, h4 {
   display: none !important;
 }
 
-/* --------------------------------------------------------------------------
-   13. Site Footer
-   -------------------------------------------------------------------------- */
+/* Site Footer */
 .site-footer {
   background-color: var(--bg-secondary);
   border-top: 1px solid var(--border);
@@ -1590,9 +1562,7 @@ h1, h2, h3, h4 {
   margin: 0;
 }
 
-/* --------------------------------------------------------------------------
-   14. Modal Dialog
-   -------------------------------------------------------------------------- */
+/*  Modal Dialog */
 .modal {
   position: fixed;
   inset: 0;
@@ -1815,9 +1785,7 @@ h1, h2, h3, h4 {
   opacity: 0.92;
 }
 
-/* --------------------------------------------------------------------------
-   15. Responsive Media Queries
-   -------------------------------------------------------------------------- */
+/* Responsive Media Queries */
 @media (max-width: 992px) {
   .editorial-feature-grid,
   .about-grid,
